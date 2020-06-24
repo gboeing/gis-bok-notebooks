@@ -1,3 +1,5 @@
+% SEE GITHUB REPO AT https://github.com/gboeing/gis-bok-notebooks
+
 \RequirePackage[l2tabu,orthodox]{nag}
 \documentclass[11pt,letterpaper]{article}
 \usepackage[T1]{fontenc}
@@ -152,7 +154,9 @@ Today, the geographic data science ecosystem is most robust in R (particularly t
 	\label{fig:code_demo}
 \end{figure*}
 
-We conclude the chapter with a real-world usage example using JupyterLab and Python that demonstrates the absolute basics of doing GIS in a computational notebook, illustrated in Figure \ref{fig:code_demo}.
+We conclude this chapter with a real-world usage example using JupyterLab and Python that demonstrates the absolute basics of doing GIS in a computational notebook, illustrated in Figure \ref{fig:code_demo}. In cell 1, we import the geopandas package for geospatial data handling and give it the friendly standard \enquote{gpd} handle. In cell 2, we use geopandas to read an ESRI shapefile containing all the census tracts in California, turn it into a GeoDataFrame, and output the shape of the resulting GeoDataFrame. We have 8,057 rows (i.e., census tracts) and 13 columns (i.e., variables). In cell 3, we create a list of all the county IDs in Southern California, then filter the GeoDataFrame to only retain tracts whose county IDs appear in that list. Outputting the shape of the resulting GeoDataFrame here reveals that we have retained only 4,879 of the original 8,057 tracts.
+
+In cell 4, we dissolve and project the GeoDataFrame. First we aggregate the tracts up to the county level with a standard spatial dissolve operation and sum their numerical attributes to get new county totals. Then we project the GeoDataFrame from its original coordinate reference system (as defined in the shapefile) to a new one representing the meter-based California State Plane Coordinate System zone 5. Finally, in cell 5, we convert the land area column from m\textsuperscript{2} to km\textsuperscript{2}, then plot a (very basic) choropleth map of the spatial data, with counties colored by land area. This notebook can be executed linearly like a script by running it from the top-down, or it can be executed nonlinearly by a user choosing individual cells to run one or multiple times in an arbitrary order.
 
 \setlength{\bibsep}{0.00cm plus 0.05cm}
 \bibliographystyle{apalike}
